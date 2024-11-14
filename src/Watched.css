@@ -1,0 +1,54 @@
+/* Watched.css */
+
+/* Conteneur principal */
+.watched-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre le contenu horizontalement */
+  justify-content: flex-start; /* Contenu en haut */
+  padding: 20px;
+}
+
+/* Titre h2 */
+.watched-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Conteneur des films */
+.movie-container-watched {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Trois films par ligne */
+  gap: 16px;
+  padding: 16px;
+  margin-bottom: 50px;
+}
+
+/* Cartes de films */
+.movie-card-watched {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 100%; /* S'adapte à la taille de la colonne */
+}
+
+.movie-poster-watched {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Centrage du message "Aucun film..." */
+.no-movies-message {
+  text-align: center; /* Centre le texte horizontalement */
+  font-size: 16px;
+  color: #555;
+  margin-top: 20px; /* Décalage vers le bas */
+  width: 100%; /* Prend toute la largeur */
+}
+

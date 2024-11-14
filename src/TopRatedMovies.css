@@ -1,0 +1,55 @@
+/* TopRatedMovies.css */
+.movies-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centre verticalement */
+  align-items: center; /* Centre horizontalement */
+  height: calc(100vh - 80px); /* Hauteur de l'écran moins la hauteur de la barre de navigation */
+  padding: 20px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  position: relative;
+  height: 100%; /* Utilisation de 100% de l'espace vertical disponible */
+}
+
+.movie-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 300px; /* Largeur maximale de la carte */
+  height: auto; /* Hauteur automatique */
+  position: relative; /* Par rapport au parent */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Assure que l'image et le titre ne se chevauchent pas */
+  align-items: center;
+  padding: 10px;
+  transition: transform 0.5s ease;
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0; /* Coins arrondis pour l'image */
+}
+
+.movie-card h3 {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
+
+.swipe-indicator {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+}
+

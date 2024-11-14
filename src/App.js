@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Assurez-vous que 'react-router-dom' est bien importé
+import { MoviesProvider } from './MoviesContext';
+import TopRatedMovies from './TopRatedMovies';
+import BottomNavBar from './BottomNavBar';
+import Watchlist from './Watchlist'; // Nouveau composant pour Watchlist
+import Watched from './Watched'; // Nouveau composant pour Watched
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router> {/* Le Router doit entourer tout le code de l'application */}
+      <MoviesProvider>
+        <Routes>
+          {/* Définir les différentes routes */}
+          <Route path="/" element={<TopRatedMovies />} /> {/* Accueil, page de swipe */}
+          <Route path="/watchlist" element={<Watchlist />} /> {/* Page de Watchlist */}
+          <Route path="/watched" element={<Watched />} /> {/* Page des films vus */}
+        </Routes>
+        
+        {/* La barre de navigation doit toujours être présente, en bas de chaque page */}
+        <BottomNavBar />
+      </MoviesProvider>
+    </Router>
   );
-}
+};
 
 export default App;
+

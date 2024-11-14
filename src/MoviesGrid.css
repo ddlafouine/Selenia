@@ -1,0 +1,59 @@
+/* MoviesGrid.css */
+
+/* Conteneur principal pour les films */
+.movies-grid-container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.movie-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
+  gap: 16px; /* Espacement uniforme entre les cartes */
+  padding: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.movie-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.movie-poster {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.movie-title {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Ajustement pour les écrans plus petits, comme les téléphones */
+@media (max-width: 768px) {
+  .movie-container {
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes pour les écrans plus petits */
+  }
+}
+
+/* Ajustement pour les écrans très petits, comme les téléphones en portrait */
+@media (max-width: 480px) {
+  .movie-container {
+    grid-template-columns: 1fr; /* Une seule colonne pour les petits écrans */
+  }
+}
+

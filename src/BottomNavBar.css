@@ -1,0 +1,58 @@
+/* BottomNavBar.css */
+.bottom-nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Distribution des boutons */
+  background-color: #222831;
+  padding: 5px 0; /* Réduire le padding pour diminuer la hauteur */
+  z-index: 9999; /* S'assurer que la barre est au-dessus des autres éléments */
+}
+
+.nav-button {
+  flex: 1; /* Les boutons occupent toute la largeur de la barre */
+  color: white;
+  background-color: transparent; /* Fond transparent */
+  border: none;
+  padding: 8px 0; /* Réduire le padding pour diminuer la hauteur */
+  margin: 0 5px; /* Espacement entre les boutons */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column; /* Aligner l'icône et le texte */
+  justify-content: center; /* Centrer l'icône et le texte verticalement */
+  align-items: center; /* Centrer l'icône et le texte horizontalement */
+}
+
+.nav-button span {
+  font-size: 12px; /* Taille du texte */
+  color: grey;
+  margin-top: 5px; /* Espace entre l'icône et le texte */
+}
+
+.nav-button:hover {
+  background-color: transparent; /* Pas de changement de couleur sur le survol */
+}
+
+.nav-button svg {
+  color: grey; /* Icônes en blanc */
+  font-size: 30px; /* Taille des icônes */
+  transition: color 0.3s ease; /* Transition pour la couleur */
+}
+
+.nav-button.active svg {
+  color: #76ABAE; /* Changer la couleur de l'icône active en vert clair */
+}
+
+.nav-button.active span {
+  font-size: 12px; /* Taille du texte */
+  color: #76ABAE;
+  margin-top: 5px; /* Espace entre l'icône et le texte */
+}
+
+/* Assurez-vous que le contenu principal prend en compte la hauteur de la barre de navigation */
+.main-content {
+  padding-bottom: 60px; /* Ajustez cette valeur en fonction de la hauteur de votre barre de navigation */
+}

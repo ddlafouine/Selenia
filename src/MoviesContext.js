@@ -8,23 +8,19 @@ export const MoviesProvider = ({ children }) => {
     const savedMovies = localStorage.getItem('movies');
     return savedMovies ? JSON.parse(savedMovies) : [];
   });
-
   const [watchedMovies, setWatchedMovies] = useState(() => {
     const savedWatchedMovies = localStorage.getItem('watchedMovies');
     return savedWatchedMovies ? JSON.parse(savedWatchedMovies) : [];
   });
-
   const [unwatchedMovies, setUnwatchedMovies] = useState([]);
   const [wantToWatchMovies, setWantToWatchMovies] = useState(() => {
     const savedWantToWatchMovies = localStorage.getItem('wantToWatchMovies');
     return savedWantToWatchMovies ? JSON.parse(savedWantToWatchMovies) : [];
   });
-
   const [currentIndex, setCurrentIndex] = useState(() => {
     const savedCurrentIndex = localStorage.getItem('currentIndex');
     return savedCurrentIndex ? JSON.parse(savedCurrentIndex) : 0;
   });
-
   const [isFetching, setIsFetching] = useState(false);
   const apiKey = 'ee26be6e3a19be503fec63f89f19097f'; // Votre clé API
 
@@ -34,14 +30,18 @@ export const MoviesProvider = ({ children }) => {
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=fr-FR&page=${page}`
       );
-
       setMovies((prevMovies) => {
+        // Éviter les doublons
         const newMovies = response.data.results.filter(
-          (movie) => !prevMovies.some((prevMovie) => prevMovie.id === movie.id)
+          movie => !prevMovies.some(prevMovie => prevMovie.id === movie.id)
         );
-        return [...prevMovies, ...newMovies];
+        const updatedMovies = [...prevMovies, ...newMovies];
+        
+        // Sauvegarder les films mis à jour dans localStorage
+        localStorage.setItem('movies', JSON.stringify(updatedMovies));
+        
+        return updatedMovies;
       });
-
       setIsFetching(false);
     } catch (error) {
       console.error(error);
@@ -49,16 +49,12 @@ export const MoviesProvider = ({ children }) => {
     }
   }, []);
 
-  const loadMoreMovies = useCallback(() => {
-    if (!isFetching) {
-      const nextPage = Math.floor(movies.length / 20) + 1;
-      fetchMovies(nextPage);
-    }
-  }, [isFetching, movies.length, fetchMovies]);
-
   useEffect(() => {
-    localStorage.setItem('movies', JSON.stringify(movies));
-  }, [movies]);
+    // Si les films ne sont pas encore dans l'état (comme au démarrage), les charger
+    if (movies.length === 0) {
+      fetchMovies(1);
+    }
+  }, [fetchMovies, movies]);
 
   useEffect(() => {
     localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
@@ -72,11 +68,11 @@ export const MoviesProvider = ({ children }) => {
     localStorage.setItem('currentIndex', JSON.stringify(currentIndex));
   }, [currentIndex]);
 
-  useEffect(() => {
-    if (currentIndex >= movies.length - 5) {
-      loadMoreMovies();
+  const loadMoreMovies = () => {
+    if (!isFetching) {
+      fetchMovies(Math.floor(movies.length / 20) + 1); // Chargement des films suivants
     }
-  }, [currentIndex, movies.length, loadMoreMovies]);
+  };
 
   const handleSwipe = (index, action) => {
     if (action === 'left') {
@@ -87,7 +83,13 @@ export const MoviesProvider = ({ children }) => {
       setWantToWatchMovies((prev) => [...prev, movies[index]]);
     }
 
-    setCurrentIndex((prevIndex) => prevIndex + 1);
+    // Charger plus de films lorsque nous avons moins de 5 films restants non classés
+    if (
+      unwatchedMovies.length + watchedMovies.length + wantToWatchMovies.length >=
+      movies.length - 5
+    ) {
+      loadMoreMovies();
+    }
   };
 
   return (
@@ -97,8 +99,8 @@ export const MoviesProvider = ({ children }) => {
         watchedMovies,
         unwatchedMovies,
         wantToWatchMovies,
-        currentIndex,
-        setCurrentIndex,
+        currentIndex,   // L'état de l'index est maintenant partagé
+        setCurrentIndex, // Fonction pour modifier l'index
         handleSwipe,
         loadMoreMovies,
       }}

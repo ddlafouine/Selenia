@@ -5,7 +5,6 @@ export const MoviesContext = createContext();
 
 export const MoviesProvider = ({ children }) => {
   const [movies, setMovies] = useState(() => {
-    // Restauration des films depuis localStorage
     const savedMovies = localStorage.getItem('movies');
     return savedMovies ? JSON.parse(savedMovies) : [];
   });
@@ -29,7 +28,6 @@ export const MoviesProvider = ({ children }) => {
   const [isFetching, setIsFetching] = useState(false);
   const apiKey = 'ee26be6e3a19be503fec63f89f19097f'; // Votre clé API
 
-  // Fonction pour récupérer les films
   const fetchMovies = useCallback(async (page) => {
     try {
       setIsFetching(true);
@@ -51,20 +49,17 @@ export const MoviesProvider = ({ children }) => {
     }
   }, []);
 
-  // Charger plus de films si nécessaire
-  const loadMoreMovies = () => {
+  const loadMoreMovies = useCallback(() => {
     if (!isFetching) {
-      const nextPage = Math.floor(movies.length / 20) + 1; // Calcul de la prochaine page
+      const nextPage = Math.floor(movies.length / 20) + 1;
       fetchMovies(nextPage);
     }
-  };
+  }, [isFetching, movies.length, fetchMovies]);
 
-  // Sauvegarder les films dans localStorage à chaque changement
   useEffect(() => {
     localStorage.setItem('movies', JSON.stringify(movies));
   }, [movies]);
 
-  // Sauvegarder les listes et l'index courant
   useEffect(() => {
     localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
   }, [watchedMovies]);
@@ -77,14 +72,12 @@ export const MoviesProvider = ({ children }) => {
     localStorage.setItem('currentIndex', JSON.stringify(currentIndex));
   }, [currentIndex]);
 
-  // Charger dynamiquement des pages supplémentaires en fonction de l'index courant
   useEffect(() => {
     if (currentIndex >= movies.length - 5) {
       loadMoreMovies();
     }
   }, [currentIndex, movies.length, loadMoreMovies]);
 
-  // Gestion des actions de swipe
   const handleSwipe = (index, action) => {
     if (action === 'left') {
       setUnwatchedMovies((prev) => [...prev, movies[index]]);
@@ -94,7 +87,6 @@ export const MoviesProvider = ({ children }) => {
       setWantToWatchMovies((prev) => [...prev, movies[index]]);
     }
 
-    // Avancer à l'élément suivant
     setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 

@@ -38,7 +38,7 @@ const TopRatedMovies = () => {
             {...swipeHandlers}
           >
             <img 
-              src={`https://image.tmdb.org/t/p/w200${movies[currentIndex].poster_path}`} 
+              src={`https://image.tmdb.org/t/p/w500${movies[currentIndex].poster_path}`} 
               alt={movies[currentIndex].title} 
               className="movie-poster"
             />

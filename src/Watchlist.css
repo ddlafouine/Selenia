@@ -3,8 +3,8 @@
 .movie-container-watchlist {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Trois films par ligne */
-  gap: 16px; /* Espace entre les films */
-  padding: 16px;
+  gap: 12px; /* Espace entre les films */
+  padding: 12px;
   margin-bottom: 50px;
 }
 

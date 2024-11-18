@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center; /* Centre verticalement */
   align-items: center; /* Centre horizontalement */
-  height: calc(100vh - 80px); /* Hauteur de l'écran moins la hauteur de la barre de navigation */
+  height: calc(100vh - 142px); /* Hauteur de l'écran moins la hauteur de la barre de navigation */
   padding: 20px;
 }
 
@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 100%;
   position: relative;
   height: 100%; /* Utilisation de 100% de l'espace vertical disponible */
 }

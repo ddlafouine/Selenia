@@ -70,7 +70,7 @@ export const MoviesProvider = ({ children }) => {
 
   const loadMoreMovies = () => {
     if (!isFetching) {
-      fetchMovies(Math.floor(movies.length / 20) + 1); // Chargement des films suivants
+      fetchMovies(Math.floor((movies.length + 5) / 20) + 1); // Chargement des films suivants
     }
   };
 

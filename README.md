@@ -14,4 +14,4 @@ Selenia is an interactive app that lets you browse and swipe through movie cards
 
 ## Authors
 
-- [@octokatherine](https://www.github.com/ddlafouine)
+- [@Antoine Corvaisier](https://www.github.com/ddlafouine)

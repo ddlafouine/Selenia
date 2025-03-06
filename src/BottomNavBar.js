@@ -10,8 +10,10 @@ const BottomNavBar = () => {
 
   // Fonction pour changer d'onglet
   const handleTabChange = (path) => {
-    setActiveTab(path); // Met à jour l'onglet actif
-    navigate(path); // Navigue vers le chemin
+    if (path && navigate) {
+      setActiveTab(path); // Met à jour l'onglet actif
+      navigate(path); // Navigue vers le chemin
+    }
   };
 
   return (

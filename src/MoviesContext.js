@@ -51,21 +51,27 @@ export const MoviesProvider = ({ children }) => {
 
   useEffect(() => {
     // Si les films ne sont pas encore dans l'état (comme au démarrage), les charger
-    if (movies.length === 0) {
+    if (movies && movies.length === 0) {
       fetchMovies(1);
     }
   }, [fetchMovies, movies]);
 
   useEffect(() => {
-    localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
+    if (watchedMovies) {
+      localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
+    }
   }, [watchedMovies]);
 
   useEffect(() => {
-    localStorage.setItem('wantToWatchMovies', JSON.stringify(wantToWatchMovies));
+    if (wantToWatchMovies) {
+      localStorage.setItem('wantToWatchMovies', JSON.stringify(wantToWatchMovies));
+    }
   }, [wantToWatchMovies]);
 
   useEffect(() => {
-    localStorage.setItem('currentIndex', JSON.stringify(currentIndex));
+    if (currentIndex !== undefined) {
+      localStorage.setItem('currentIndex', JSON.stringify(currentIndex));
+    }
   }, [currentIndex]);
 
   const loadMoreMovies = () => {

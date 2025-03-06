@@ -13,16 +13,22 @@ const TopRatedMovies = () => {
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {
-      handleSwipe(currentIndex, 'left');
-      setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, movies.length - 1));
+      if (movies && currentIndex !== undefined) {
+        handleSwipe(currentIndex, 'left');
+        setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, movies.length - 1));
+      }
     },
     onSwipedRight: () => {
-      handleSwipe(currentIndex, 'right');
-      setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, movies.length - 1));
+      if (movies && currentIndex !== undefined) {
+        handleSwipe(currentIndex, 'right');
+        setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, movies.length - 1));
+      }
     },
     onSwipedUp: () => {
-      handleSwipe(currentIndex, 'top'); // Ajout à la watchlist
-      setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, movies.length - 1));
+      if (movies && currentIndex !== undefined) {
+        handleSwipe(currentIndex, 'top'); // Ajout à la watchlist
+        setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, movies.length - 1));
+      }
     },
     preventDefaultTouchmoveEvent: true,
     trackMouse: true,
@@ -51,4 +57,3 @@ const TopRatedMovies = () => {
 };
 
 export default TopRatedMovies;
-

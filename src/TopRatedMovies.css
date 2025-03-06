@@ -23,7 +23,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 300px; /* Largeur maximale de la carte */
-  height: auto; /* Hauteur automatique */
+  height: 450px; /* Hauteur fixe pour les posters de films */
   position: relative; /* Par rapport au parent */
   display: flex;
   flex-direction: column;
@@ -53,3 +53,7 @@
   font-size: 16px;
 }
 
+.movie-poster {
+  height: 100%;
+  object-fit: cover; /* Assure que l'image couvre toute la hauteur sans déformation */
+}

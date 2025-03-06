@@ -52,3 +52,11 @@
   width: 100%; /* Prend toute la largeur */
 }
 
+/* P4b0b */
+.movie-title-watched {
+  display: none;
+}
+
+.movie-card-watched.visible .movie-title-watched {
+  display: block;
+}

@@ -51,3 +51,11 @@
   width: 100%; /* Prend toute la largeur */
 }
 
+/* Pf93d */
+.movie-title-watched {
+  display: none;
+}
+
+.movie-card-watched.visible .movie-title-watched {
+  display: block;
+}

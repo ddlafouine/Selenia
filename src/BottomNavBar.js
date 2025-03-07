@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IoClipboardOutline, IoClipboard } from "react-icons/io5";
+import { IoClipboardOutline, IoClipboard, IoEye, IoEyeOutline, IoFilm, IoFilmOutline} from "react-icons/io5";
 
 import './BottomNavBar.css';
 

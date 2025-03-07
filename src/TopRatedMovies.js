@@ -1,36 +1,58 @@
 import React, { useContext } from 'react';
 import { MoviesContext } from './MoviesContext';
-import './Watched.css';
+import { useSwipeable } from 'react-swipeable';
+import './TopRatedMovies.css';
 
-const Watched = () => {
-  const { watchedMovies } = useContext(MoviesContext);
+const TopRatedMovies = () => {
+  const {
+    movies,
+    currentIndex,
+    setCurrentIndex,
+    handleSwipe,
+  } = useContext(MoviesContext);
 
-  // Ajouter un log pour vérifier la valeur de watchedMovies
-  console.log(watchedMovies);
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      if (movies && currentIndex !== undefined) {
+        handleSwipe(currentIndex, 'left');
+        setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, movies.length - 1));
+      }
+    },
+    onSwipedRight: () => {
+      if (movies && currentIndex !== undefined) {
+        handleSwipe(currentIndex, 'right');
+        setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, movies.length - 1));
+      }
+    },
+    onSwipedUp: () => {
+      if (movies && currentIndex !== undefined) {
+        handleSwipe(currentIndex, 'top'); // Ajout à la watchlist
+        setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, movies.length - 1));
+      }
+    },
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
 
   return (
-    <div className="watched-container">
-      <h2>Watched</h2>
-      
-      {/* Le message disparaît quand watchedMovies contient des films */}
-      {watchedMovies.length === 0 ? (
-        <p className="no-movies-message">Aucun film dans votre Watched list.</p>
-      ) : (
-        <div className="movie-container-watched">
-          {watchedMovies.map((movie) => (
-            <div key={movie.id} className="movie-card-watched">
-              <img
-                src={https://image.tmdb.org/t/p/original${movie.poster_path}}
-                alt={movie.title}
-                className="movie-poster-watched"
-              />
-              <h3 className="movie-title-watched">{movie.title}</h3>
-            </div>
-          ))}
-        </div>
-      )}
+    <div className="movies-container">
+      <div className="cards-container">
+        {movies.length > 0 && currentIndex < movies.length && (
+          <div 
+            className="movie-card" 
+            key={movies[currentIndex].id} 
+            {...swipeHandlers}
+          >
+            <img 
+              src={`https://image.tmdb.org/t/p/original${movies[currentIndex].poster_path}`}
+              alt={movies[currentIndex].title} 
+              className="movie-poster"
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default Watched;
+export default TopRatedMovies;

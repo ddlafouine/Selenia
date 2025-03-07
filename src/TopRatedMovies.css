@@ -1,3 +1,8 @@
+body
+{
+  overscroll-behavior-y: contain;
+}
+
 /* TopRatedMovies.css */
 .movies-container {
   display: flex;

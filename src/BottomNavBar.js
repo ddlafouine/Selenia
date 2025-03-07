@@ -21,7 +21,7 @@ const BottomNavBar = () => {
         onClick={() => handleTabChange('/watchlist')} 
         className={`nav-button ${activeTab === '/watchlist' ? 'active' : ''}`}
       >
-        {activeTab === '/watched' ? <IoEye /> : <IoEyeOutline />}
+        {activeTab === '/watchlist' ? <IoEye /> : <IoEyeOutline />}
         <span>Watchlist</span>
       </button>
 
@@ -29,7 +29,7 @@ const BottomNavBar = () => {
         onClick={() => handleTabChange('/')} 
         className={`nav-button ${activeTab === '/' ? 'active' : ''}`}
       >
-        {activeTab === '/watched' ? <IoFilm /> : <IoFilmOutline />}
+        {activeTab === '/' ? <IoFilm /> : <IoFilmOutline />}
         <span>Accueil</span>
       </button>
 

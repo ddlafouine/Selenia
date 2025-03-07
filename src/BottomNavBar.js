@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaEye, FaFilm, FaClipboardList } from 'react-icons/fa'; // Nouvelles icônes
+import { FaEye, FaFilm, FaClipboardList } from 'react-icons/fa6'; // Nouvelles icônes
 
 import './BottomNavBar.css';
 

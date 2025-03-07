@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { MoviesContext } from './MoviesContext';
 import './Watched.css';
 
@@ -7,6 +7,24 @@ const Watched = () => {
 
   // Ajouter un log pour vérifier la valeur de watchedMovies
   console.log(watchedMovies);
+
+  // Utiliser useEffect pour empêcher le pull-to-refresh
+  useEffect(() => {
+    // Fonction qui empêche le pull-to-refresh
+    const preventPullToRefresh = (e) => {
+      if (window.scrollY === 0 && e.touches[0].clientY > 50) {
+        e.preventDefault(); // Empêche le rechargement de la page
+      }
+    };
+
+    // Attacher l'événement de touch
+    document.addEventListener('touchmove', preventPullToRefresh, { passive: false });
+
+    // Nettoyage lors du démontage du composant
+    return () => {
+      document.removeEventListener('touchmove', preventPullToRefresh);
+    };
+  }, []); // Le tableau vide signifie que l'effet ne se déclenche qu'une seule fois (au montage)
 
   return (
     <div className="watched-container">

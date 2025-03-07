@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaEye, FaFilm } from 'react-icons/fa6';
 import { IoClipboardOutline, IoClipboard } from "react-icons/io5";
 
 import './BottomNavBar.css';
@@ -23,14 +22,14 @@ const BottomNavBar = () => {
         className={`nav-button ${activeTab === '/watchlist' ? 'active' : ''}`}
       >
         <FaEye />
-        <span>Watchlist</span>
+        {activeTab === '/watched' ? <IoEye /> : <IoEyeOutline />}
       </button>
 
       <button 
         onClick={() => handleTabChange('/')} 
         className={`nav-button ${activeTab === '/' ? 'active' : ''}`}
       >
-        <FaFilm />
+        {activeTab === '/watched' ? <IoFilm /> : <IoFilmOutline />}
         <span>Accueil</span>
       </button>
 

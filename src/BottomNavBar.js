@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaEye, FaFilm, FaClipboardList } from 'react-icons/fa6'; // Nouvelles icônes
-import { IoClipboardOutline } from "react-icons/io5";
+import { FaEye, FaFilm } from 'react-icons/fa6';
+import { IoClipboardOutline, IoClipboard } from "react-icons/io5";
 
 import './BottomNavBar.css';
 
 const BottomNavBar = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('/'); // Pour suivre l'onglet actif
+  const [activeTab, setActiveTab] = useState('/');
 
-  // Fonction pour changer d'onglet
   const handleTabChange = (path) => {
     if (path && navigate) {
-      setActiveTab(path); // Met à jour l'onglet actif
-      navigate(path); // Navigue vers le chemin
+      setActiveTab(path);
+      navigate(path);
     }
   };
 
@@ -39,7 +38,7 @@ const BottomNavBar = () => {
         onClick={() => handleTabChange('/watched')} 
         className={`nav-button ${activeTab === '/watched' ? 'active' : ''}`}
       >
-        <IoClipboardOutline />
+        {activeTab === '/watched' ? <IoClipboard /> : <IoClipboardOutline />}
         <span>Watched</span>
       </button>
     </div>

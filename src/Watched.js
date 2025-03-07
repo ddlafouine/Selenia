@@ -15,6 +15,7 @@ const Watched = () => {
   return (
     <div className="watched-container">
       <h2>Watched</h2>
+      <p className="no-movies-message">Aucun film dans votre Watched list.</p>
       
       <div className="movie-container-watched">
         {watchedMovies.length > 0 ? (
@@ -28,9 +29,7 @@ const Watched = () => {
               <h3 className="movie-title-watched">{movie.title}</h3>
             </div>
           ))
-        ) : (
-          <p className="no-movies-message">Aucun film dans votre Watched list.</p>
-        )}
+        ) : null}
       </div>
     </div>
   );

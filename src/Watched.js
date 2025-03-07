@@ -15,8 +15,12 @@ const Watched = () => {
   return (
     <div className="watched-container">
       <h2>Watched</h2>
-      <p className="no-movies-message">Aucun film dans votre Watched list.</p>
       
+      {/* Afficher le message seulement s'il n'y a pas de films */}
+      {watchedMovies.length === 0 && (
+        <p className="no-movies-message">Aucun film dans votre Watched list.</p>
+      )}
+
       <div className="movie-container-watched">
         {watchedMovies.length > 0 ? (
           watchedMovies.map((movie) => (

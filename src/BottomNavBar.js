@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaEye, FaFilm, FaClipboardList } from 'react-icons/fa6'; // Nouvelles icônes
+import { IoClipboardOutline } from "react-icons/io5";
 
 import './BottomNavBar.css';
 
@@ -38,7 +39,7 @@ const BottomNavBar = () => {
         onClick={() => handleTabChange('/watched')} 
         className={`nav-button ${activeTab === '/watched' ? 'active' : ''}`}
       >
-        <FaClipboardList />
+        <IoClipboardOutline />
         <span>Watched</span>
       </button>
     </div>

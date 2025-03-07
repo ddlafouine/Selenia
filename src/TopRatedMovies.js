@@ -48,7 +48,6 @@ const TopRatedMovies = () => {
               alt={movies[currentIndex].title} 
               className="movie-poster"
             />
-            <h3>{movies[currentIndex].title}</h3>
           </div>
         )}
       </div>

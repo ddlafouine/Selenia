@@ -49,6 +49,10 @@
   color: #555;
   margin-top: 20px; /* Décalage vers le bas */
   width: 100%; /* Prend toute la largeur */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 /* Pf93d */

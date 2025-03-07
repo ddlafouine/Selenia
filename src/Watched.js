@@ -27,7 +27,7 @@ const Watched = () => {
           {watchedMovies.map((movie) => (
             <div key={movie.id} className="movie-card-watched" onClick={handleCardClick}>
               <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                 alt={movie.title}
                 className="movie-poster-watched"
               />

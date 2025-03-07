@@ -8,13 +8,6 @@ const Watched = () => {
   // Ajouter un log pour vérifier la valeur de watchedMovies
   console.log(watchedMovies);
 
-  const handleCardClick = (event) => {
-    const titleElement = event.currentTarget.querySelector('.movie-title-watched');
-    if (titleElement) {
-      titleElement.classList.toggle('visible');
-    }
-  };
-
   return (
     <div className="watched-container">
       <h2>Watched</h2>
@@ -25,9 +18,9 @@ const Watched = () => {
       ) : (
         <div className="movie-container-watched">
           {watchedMovies.map((movie) => (
-            <div key={movie.id} className="movie-card-watched" onClick={handleCardClick}>
+            <div key={movie.id} className="movie-card-watched">
               <img
-                src={https://image.tmdb.org/t/p/original${movie.poster_path}}
+                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                 alt={movie.title}
                 className="movie-poster-watched"
               />

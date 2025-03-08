@@ -9,7 +9,7 @@ const from = i => ({ x: 0, rot: 0, scale: 1.5, y: -1000 });
 const trans = (r, s) => `perspective(1500px) rotateX(30deg) rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`;
 
 const TopRatedMovies = () => {
-  const { movies, currentIndex, setCurrentIndex, handleSwipe } = useContext(MoviesContext);
+  const { movies, setCurrentIndex, handleSwipe } = useContext(MoviesContext);
   const [gone] = useState(() => new Set());
   const [props, set] = useSprings(movies.length, i => ({ ...to(i), from: from(i) }));
 
